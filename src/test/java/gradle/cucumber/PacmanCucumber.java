@@ -5,12 +5,11 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import junit.framework.TestCase;
 
-
 public class PacmanCucumber {
-
 
     private Pacman pacman = new Pacman();
     private Biscuit biscuit = new Biscuit();
+    private Fruta fruta = new Fruta();
 
     @Given("^Pacman come un biscuit$")
     public void pacmanComeUnBiscuit()  {
@@ -27,7 +26,13 @@ public class PacmanCucumber {
 
     @Then("^Suma puntos (\\d+)$")
     public void sumaPuntos(int puntosEsperados)  {
-        TestCase.assertEquals(puntosEsperados, pacman.puntaje());
 
+        TestCase.assertEquals(puntosEsperados, pacman.puntaje());
+    }
+
+    @Given("^Pacman come una fruta$")
+    public void pacmanComeUnaFruta() throws Throwable {
+
+        pacman.come(fruta);
     }
 }
