@@ -13,10 +13,10 @@ Ejercitar la escritura de código en ambientes colaborativos utilizando una meto
 
 Nro | Nombre | Legajo | Mail
 ----|--------|--------|------
-1   |        |        |
-2   |        |        |
-3   |        |        |
-4   |        |        |
+1   | Baez Juan       | 31761        | juanmanuelbaez1994@gmail.com
+2   | Cigala German       | 30754       | cigalagerman@gmail.com
+3   | Gonzalez Martin       | 33354        | martinegonzalez95@gmail.com
+4   | Testay Gaston       | 33735       | gaston.testay@gmail.com 
     
 ### Entrega
 
