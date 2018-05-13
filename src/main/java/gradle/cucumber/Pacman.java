@@ -24,4 +24,17 @@ public class Pacman {
 
         return puntaje;
     }
+
+    public void avanza() {
+
+    }
+
+    public int vida() {
+
+        return 0;
+    }
+
+    public void chocar(Fantasma fantasma) {
+
+    }
 }

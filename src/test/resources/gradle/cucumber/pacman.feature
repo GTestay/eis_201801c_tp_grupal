@@ -9,3 +9,8 @@ Feature:  Cuando el pacman come
     Given Pacman come una fruta
     When Se vuelve más gordo
     Then Suma puntos 10
+
+  Scenario: Pacman choca fantasma y muere
+    Given Pacman avanza
+    When Choca con un fantasma
+    Then Su vida es 0
