@@ -44,9 +44,9 @@ public class PacmanCucumber {
     }
 
     @When("^Choca con un fantasma$")
-    public void chocaConUnFantasma(Fantasma fantasma) {
+    public void chocaConUnFantasma() {
 
-        pacman.chocar(fantasma);
+        pacman.chocar(this.fantasma);
     }
 
     @Then("^Su vida es (\\d+)$")
