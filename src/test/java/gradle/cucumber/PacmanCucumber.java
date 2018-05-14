@@ -11,13 +11,14 @@ public class PacmanCucumber {
     private Biscuit biscuit = new Biscuit();
     private Fruta fruta = new Fruta();
     private Fantasma fantasma = new Fantasma();
+    private Pellet pellet = new Pellet();
+    private Juego juego = new Juego();
 
     @Given("^Pacman come un biscuit$")
     public void pacmanComeUnBiscuit()  {
 
         pacman.come(biscuit);
     }
-
 
     @When("^Se vuelve más gordo$")
     public void seVuelveMásGordo()  {
@@ -54,4 +55,23 @@ public class PacmanCucumber {
 
         TestCase.assertEquals(vidaEsperada, pacman.vida());
     }
+
+    @Given("^Un Pacman")
+    public void dadoUnPacman() {
+        this.juego.agregarFantasma(this.fantasma);
+        this.pacman.definirJuego(this.juego);
+    }
+
+    @When("^Pacman come pellet$")
+    public void pacmanComeUnPellet() {
+
+        this.pacman.come(this.pellet);
+    }
+
+    @Then("^Fantasmas se debilitan$")
+    public void fantasmasSeDebilitan() {
+
+        TestCase.assertTrue(this.juego.fantasmas().get(0).estaDebil());
+    }
+
 }

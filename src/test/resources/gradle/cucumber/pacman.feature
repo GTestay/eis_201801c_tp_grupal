@@ -14,3 +14,8 @@ Feature:  Cuando el pacman come
     Given Pacman avanza
     When Choca con un fantasma
     Then Su vida es 0
+
+  Scenario: Pacman come pellet y debilita a los fantasmas
+    Given Un Pacman
+    When Pacman come pellet
+    Then Fantasmas se debilitan

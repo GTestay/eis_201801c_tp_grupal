@@ -4,16 +4,22 @@ public class Pacman {
 
     private int puntaje;
 
+    private Juego juego;
+
     public void come(Biscuit biscuit) {
 
         puntaje += 5;
-
     }
 
     public void come(Fruta fruta) {
 
         puntaje += 10;
 
+    }
+
+    public void come(Pellet pellet) {
+
+        this.juego.pacmanComioPellet();
     }
 
     public void engordar() {
@@ -36,5 +42,9 @@ public class Pacman {
 
     public void chocar(Fantasma fantasma) {
 
+    }
+
+    public void definirJuego(Juego juego) {
+        this.juego = juego;
     }
 }
