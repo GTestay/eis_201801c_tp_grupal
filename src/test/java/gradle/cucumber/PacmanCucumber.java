@@ -10,6 +10,7 @@ public class PacmanCucumber {
     private Pacman pacman = new Pacman();
     private Biscuit biscuit = new Biscuit();
     private Fruta fruta = new Fruta();
+    private Fantasma fantasma = new Fantasma();
 
     @Given("^Pacman come un biscuit$")
     public void pacmanComeUnBiscuit()  {
@@ -34,5 +35,23 @@ public class PacmanCucumber {
     public void pacmanComeUnaFruta() throws Throwable {
 
         pacman.come(fruta);
+    }
+
+    @Given("^Pacman avanza$")
+    public void pacmanAvanza() {
+
+        pacman.avanza();
+    }
+
+    @When("^Choca con un fantasma$")
+    public void chocaConUnFantasma() {
+
+        pacman.chocar(this.fantasma);
+    }
+
+    @Then("^Su vida es (\\d+)$")
+    public void restaVida(int vidaEsperada)  {
+
+        TestCase.assertEquals(vidaEsperada, pacman.vida());
     }
 }
