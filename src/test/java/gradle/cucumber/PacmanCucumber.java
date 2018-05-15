@@ -3,6 +3,7 @@ package gradle.cucumber;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import junit.framework.Test;
 import junit.framework.TestCase;
 
 public class PacmanCucumber {
@@ -51,9 +52,9 @@ public class PacmanCucumber {
     }
 
     @Then("^Su vida es (\\d+)$")
-    public void restaVida(int vidaEsperada)  {
+    public void restaVida(int vida)  {
 
-        TestCase.assertEquals(vidaEsperada, pacman.vida());
+        TestCase.assertEquals(vida, pacman.vida());
     }
 
     @Given("^Un Pacman")
@@ -74,4 +75,16 @@ public class PacmanCucumber {
         TestCase.assertTrue(this.juego.fantasmas().get(0).estaDebil());
     }
 
+    @When("^Choca con un fantasma debilitado$")
+    public void pacmanChocaContraUnFantasmaDebilitado() {
+        this.pacman.come(this.pellet);
+        this.pacman.chocar(this.juego.fantasmas().get(0));
+    }
+
+    @Then("^Sigue con vida y el fantasma pierde su cuerpo$")
+    public void pacmanNoMuereYElFantasmaPierdeSuCuerpo() {
+
+        TestCase.assertTrue(this.pacman.estaVivo());
+        TestCase.assertFalse(this.juego.fantasmas().get(0).tieneCuerpo());
+    }
 }
