@@ -24,3 +24,8 @@ Feature:  Cuando el pacman come
     Given Un Pacman
     When Choca con un fantasma debilitado
     Then Sigue con vida y el fantasma pierde su cuerpo
+
+  Scenario: Pacman choca con un fantasma sin cuerpo y no muere
+    Given Un Pacman
+    When Choca con un fantasma sin cuerpo
+    Then Sigue con vida

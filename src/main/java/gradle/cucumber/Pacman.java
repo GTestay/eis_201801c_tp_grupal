@@ -50,7 +50,7 @@ public class Pacman {
     public void chocar(Fantasma fantasma) {
         if (!fantasma.estaDebil()){
             this.morir();
-        } else {
+        } else if (fantasma.tieneCuerpo()){
             this.come(fantasma);
             fantasma.perderCuerpo();
         }

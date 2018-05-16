@@ -87,4 +87,18 @@ public class PacmanCucumber {
         TestCase.assertTrue(this.pacman.estaVivo());
         TestCase.assertFalse(this.juego.fantasmas().get(0).tieneCuerpo());
     }
+
+    @When("^Choca con un fantasma sin cuerpo$")
+    public void pacmanChocaContraUnFantasmaSinCuerpo() {
+        this.pacman.come(this.pellet);
+        this.pacman.chocar(this.juego.fantasmas().get(0));
+        this.pacman.chocar(this.juego.fantasmas().get(0));
+    }
+
+    @Then("^Sigue con vida$")
+    public void pacmanNoMuere() {
+
+        TestCase.assertTrue(this.pacman.estaVivo());
+        TestCase.assertFalse(this.juego.fantasmas().get(0).tieneCuerpo());
+    }
 }
