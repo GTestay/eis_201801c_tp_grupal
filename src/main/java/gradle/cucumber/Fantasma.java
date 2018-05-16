@@ -1,6 +1,6 @@
 package gradle.cucumber;
 
-public class Fantasma {
+public class Fantasma implements Comestible {
 
     private boolean estaDebil = false;
     private boolean tieneCuerpo = true;
@@ -13,10 +13,15 @@ public class Fantasma {
         return tieneCuerpo;
     }
 
-    public void debilitarse() { estaDebil = true; }
+    public void debilitarse() {
+        estaDebil = true;
+    }
 
-    public void perderCuerpo() { tieneCuerpo = false; }
+    public void perderCuerpo() {
+        tieneCuerpo = false;
+    }
 
+    @Override
     public void esComidoPor(Pacman pacman) {
 
         pacman.engordar(5);
@@ -28,8 +33,7 @@ public class Fantasma {
 
             pacman.comer(this);
             this.perderCuerpo();
-        }
-        else {
+        } else {
 
             pacman.morir();
         }

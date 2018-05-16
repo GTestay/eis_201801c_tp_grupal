@@ -1,10 +1,15 @@
 package gradle.cucumber;
 
-public class Pellet {
+public class Pellet implements Comestible {
 
     private Juego juego;
 
-    public Pellet(Juego juegoEnCurso){ juego = juegoEnCurso; }
+    public Pellet(Juego juegoEnCurso) {
+        juego = juegoEnCurso;
+    }
 
-    public void esComidoPor(Pacman pacman) { juego.pacmanComioPellet(); }
+    @Override
+    public void esComidoPor(Pacman pacman) {
+        juego.pacmanComioPellet();
+    }
 }
