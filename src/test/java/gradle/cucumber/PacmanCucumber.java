@@ -1,6 +1,5 @@
 package gradle.cucumber;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -43,7 +42,7 @@ public class PacmanCucumber {
     }
 
     @Given("^Pacman$")
-    public void pacman(){
+    public void pacman() {
 
         pacman = new Pacman();
     }
@@ -56,7 +55,7 @@ public class PacmanCucumber {
     }
 
     @Then("^Suma puntos (\\d+)$")
-    public void sumaPuntos(int puntosEsperados)  {
+    public void sumaPuntos(int puntosEsperados) {
 
         TestCase.assertEquals(puntosEsperados, pacman.puntaje());
     }
@@ -69,14 +68,14 @@ public class PacmanCucumber {
     }
 
     @When("^Choca con un fantasma$")
-    public void chocaConUnFantasma(){
+    public void chocaConUnFantasma() {
 
         Fantasma fantasma = new Fantasma();
         pacman.chocar(fantasma);
     }
 
     @Then("^Muere$")
-    public void muere(){
+    public void muere() {
 
         TestCase.assertEquals(0, pacman.vida());
     }

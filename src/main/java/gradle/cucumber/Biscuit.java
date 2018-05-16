@@ -1,6 +1,6 @@
 package gradle.cucumber;
 
-public class Biscuit {
+public class Biscuit implements Comestible {
 
     public void esComidoPor(Pacman pacman) {
 

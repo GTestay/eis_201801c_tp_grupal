@@ -6,7 +6,9 @@ public class Juego {
 
     private ArrayList<Fantasma> fantasmas = new ArrayList<>();
 
-    public ArrayList<Fantasma> fantasmas() { return fantasmas; }
+    public ArrayList<Fantasma> fantasmas() {
+        return fantasmas;
+    }
 
     public void pacmanComioPellet() {
 
