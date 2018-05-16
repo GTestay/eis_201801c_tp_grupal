@@ -1,31 +1,32 @@
-Feature:  Cuando el pacman come
+Feature:  Pacman
 
-  Scenario: Comiendo un biscuit
-    Given Pacman come un biscuit
-    When Se vuelve más gordo
+  Scenario: Pacman come un biscuit se vuelve más gordo (suma puntos)
+    Given Pacman
+    When Come un biscuit
     Then Suma puntos 5
 
-  Scenario: Comiendo una fruta
-    Given Pacman come una fruta
-    When Se vuelve más gordo
+  Scenario: Pacman come una fruta se vuelve más gordo (suma puntos)
+    Given Pacman
+    When Come una fruta
     Then Suma puntos 10
 
-  Scenario: Pacman choca fantasma y muere
-    Given Pacman avanza
+  Scenario: Pacman choca contra un fantasma y muere
+    Given Pacman
     When Choca con un fantasma
-    Then Su vida es 0
+    Then Muere
 
-  Scenario: Pacman come pellet y debilita a los fantasmas
-    Given Un Pacman
-    When Pacman come pellet
+  Scenario: Pacman come un pellet y los fantasmas se debilitan
+    Given Pacman
+    When Come un pellet
     Then Fantasmas se debilitan
 
   Scenario: Pacman choca con un fantasma debilitado y no muere
-    Given Un Pacman
+    Given Pacman
     When Choca con un fantasma debilitado
-    Then Sigue con vida y el fantasma pierde su cuerpo
+    Then Sigue con vida
+    Then Fantasma pierde su cuerpo
 
-  Scenario: Pacman choca con un fantasma sin cuerpo y no muere
-    Given Un Pacman
+  Scenario: Pacman choca contra un fantasma sin cuerpo y no muere
+    Given Pacman
     When Choca con un fantasma sin cuerpo
     Then Sigue con vida

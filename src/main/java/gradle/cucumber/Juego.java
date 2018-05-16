@@ -4,20 +4,19 @@ import java.util.ArrayList;
 
 public class Juego {
 
-    private ArrayList<Fantasma> fantasmas = new ArrayList<Fantasma>();
+    private ArrayList<Fantasma> fantasmas = new ArrayList<>();
 
-    public void agregarFantasma(Fantasma fantasma) {
-        this.fantasmas.add(new Fantasma());
-    }
-
-    public ArrayList<Fantasma> fantasmas() {
-        return this.fantasmas;
-    }
+    public ArrayList<Fantasma> fantasmas() { return fantasmas; }
 
     public void pacmanComioPellet() {
 
         for (Fantasma fantasma : this.fantasmas()) {
             fantasma.debilitarse();
         }
+    }
+
+    public boolean fantasmasDebiles() {
+
+        return fantasmas().stream().allMatch(fantasma -> fantasma.estaDebil());
     }
 }
