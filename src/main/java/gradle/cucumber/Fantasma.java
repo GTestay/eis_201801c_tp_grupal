@@ -6,16 +6,32 @@ public class Fantasma {
     private boolean tieneCuerpo = true;
 
     public boolean estaDebil() {
-        return this.estaDebil;
+        return estaDebil;
     }
 
     public boolean tieneCuerpo() {
-        return this.tieneCuerpo;
+        return tieneCuerpo;
     }
 
-    public void debilitarse() {
-        this.estaDebil = true;
+    public void debilitarse() { estaDebil = true; }
+
+    public void perderCuerpo() { tieneCuerpo = false; }
+
+    public void esComidoPor(Pacman pacman) {
+
+        pacman.engordar(5);
     }
 
-    public void perderCuerpo() { this.tieneCuerpo = false; }
+    public void esChocadoPor(Pacman pacman) {
+
+        if (estaDebil) {
+
+            pacman.comer(this);
+            this.perderCuerpo();
+        }
+        else {
+
+            pacman.morir();
+        }
+    }
 }

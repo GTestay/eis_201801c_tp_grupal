@@ -1,30 +1,58 @@
 package gradle.cucumber;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import junit.framework.Test;
 import junit.framework.TestCase;
 
 public class PacmanCucumber {
 
-    private Pacman pacman = new Pacman();
-    private Biscuit biscuit = new Biscuit();
-    private Fruta fruta = new Fruta();
-    private Fantasma fantasma = new Fantasma();
-    private Pellet pellet = new Pellet();
+    private Pacman pacman;
     private Juego juego = new Juego();
+    private Fantasma ultimoFantasmaChocado;
 
-    @Given("^Pacman come un biscuit$")
-    public void pacmanComeUnBiscuit()  {
+    @Then("^Fantasmas se debilitan$")
+    public void fantasmasSeDebilitan() {
 
-        pacman.come(biscuit);
+        TestCase.assertTrue(this.juego.fantasmasDebiles());
     }
 
-    @When("^Se vuelve más gordo$")
-    public void seVuelveMásGordo()  {
+    @When("^Choca con un fantasma debilitado$")
+    public void pacmanChocaContraUnFantasmaDebilitado() {
 
-        pacman.engordar();
+        Fantasma fantasma = new Fantasma();
+        fantasma.debilitarse();
+
+        pacman.chocar(fantasma);
+        ultimoFantasmaChocado = fantasma;
+    }
+
+    @When("^Choca con un fantasma sin cuerpo$")
+    public void pacmanChocaContraUnFantasmaSinCuerpo() {
+
+        Fantasma fantasma = new Fantasma();
+        fantasma.perderCuerpo();
+        ultimoFantasmaChocado = fantasma;
+    }
+
+    @Then("^Sigue con vida$")
+    public void pacmanNoMuere() {
+
+        TestCase.assertTrue(pacman.estaVivo());
+    }
+
+    @Given("^Pacman$")
+    public void pacman(){
+
+        pacman = new Pacman();
+    }
+
+    @When("^Come un biscuit$")
+    public void comeUnBiscuit() {
+
+        Biscuit biscuit = new Biscuit();
+        pacman.comer(biscuit);
     }
 
     @Then("^Suma puntos (\\d+)$")
@@ -33,72 +61,36 @@ public class PacmanCucumber {
         TestCase.assertEquals(puntosEsperados, pacman.puntaje());
     }
 
-    @Given("^Pacman come una fruta$")
-    public void pacmanComeUnaFruta() throws Throwable {
+    @When("^Come una fruta$")
+    public void comeUnaFruta() {
 
-        pacman.come(fruta);
-    }
-
-    @Given("^Pacman avanza$")
-    public void pacmanAvanza() {
-
-        pacman.avanza();
+        Fruta fruta = new Fruta();
+        pacman.comer(fruta);
     }
 
     @When("^Choca con un fantasma$")
-    public void chocaConUnFantasma() {
+    public void chocaConUnFantasma(){
 
-        pacman.chocar(this.fantasma);
+        Fantasma fantasma = new Fantasma();
+        pacman.chocar(fantasma);
     }
 
-    @Then("^Su vida es (\\d+)$")
-    public void restaVida(int vida)  {
+    @Then("^Muere$")
+    public void muere(){
 
-        TestCase.assertEquals(vida, pacman.vida());
+        TestCase.assertEquals(0, pacman.vida());
     }
 
-    @Given("^Un Pacman")
-    public void dadoUnPacman() {
-        this.juego.agregarFantasma(this.fantasma);
-        this.pacman.definirJuego(this.juego);
+    @When("^Come un pellet$")
+    public void comeUnPellet() {
+
+        Pellet pellet = new Pellet(this.juego);
+        pacman.comer(pellet);
     }
 
-    @When("^Pacman come pellet$")
-    public void pacmanComeUnPellet() {
+    @Then("^Fantasma pierde su cuerpo$")
+    public void fantasmaPierdeSuCuerpo() {
 
-        this.pacman.come(this.pellet);
-    }
-
-    @Then("^Fantasmas se debilitan$")
-    public void fantasmasSeDebilitan() {
-
-        TestCase.assertTrue(this.juego.fantasmas().get(0).estaDebil());
-    }
-
-    @When("^Choca con un fantasma debilitado$")
-    public void pacmanChocaContraUnFantasmaDebilitado() {
-        this.pacman.come(this.pellet);
-        this.pacman.chocar(this.juego.fantasmas().get(0));
-    }
-
-    @Then("^Sigue con vida y el fantasma pierde su cuerpo$")
-    public void pacmanNoMuereYElFantasmaPierdeSuCuerpo() {
-
-        TestCase.assertTrue(this.pacman.estaVivo());
-        TestCase.assertFalse(this.juego.fantasmas().get(0).tieneCuerpo());
-    }
-
-    @When("^Choca con un fantasma sin cuerpo$")
-    public void pacmanChocaContraUnFantasmaSinCuerpo() {
-        this.pacman.come(this.pellet);
-        this.pacman.chocar(this.juego.fantasmas().get(0));
-        this.pacman.chocar(this.juego.fantasmas().get(0));
-    }
-
-    @Then("^Sigue con vida$")
-    public void pacmanNoMuere() {
-
-        TestCase.assertTrue(this.pacman.estaVivo());
-        TestCase.assertFalse(this.juego.fantasmas().get(0).tieneCuerpo());
+        TestCase.assertFalse(ultimoFantasmaChocado.tieneCuerpo());
     }
 }
